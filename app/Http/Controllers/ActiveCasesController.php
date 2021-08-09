@@ -23,6 +23,9 @@ class ActiveCasesController extends Controller
      */
     public function create()
     {
+        return view('activecases.create', [
+            'today' => \Carbon\Carbon::now()->format('Y-m-d'),
+        ]);
     }
 
     /**
@@ -33,6 +36,19 @@ class ActiveCasesController extends Controller
      */
     public function store(Request $request)
     {
+        if(\App\Models\ActiveCases::where('date_issued', '=', $request->date_issued)->count() != 0) {
+            throw \Illuminate\Validation\ValidationException::withMessages(['date_issued' => "Data for this date already exists. If you want to edit, proceed to its page."]);
+        }
+
+        // dd($request);
+
+        \App\Models\ActiveCases::create([
+            'date_issued' => $request->date_issued,
+            'confirmed' => $request->confirmed,
+            'probable' => $request->probable,
+            'suspected' => $request->suspected,
+            'reference' => $request->reference,
+        ]);
     }
 
     /**
