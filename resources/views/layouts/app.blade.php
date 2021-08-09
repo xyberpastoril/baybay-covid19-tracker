@@ -7,10 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Baybay COVID-19 Tracker</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('chart.js/chart.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Baybay COVID-19 Tracker
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
+                        {{-- @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -69,7 +70,7 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endguest --}}
                     </ul>
                 </div>
             </div>
@@ -78,6 +79,33 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="my-0">
+                            <span class="text-muted">@php echo date("Y"); @endphp &#169; </span>Graeme Xyber Pastoril
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-right my-0">
+                            <a class="mr-3" href="https://www.facebook.com/xyberpastoril">
+                                Facebook
+                            </a>
+
+                            <a class="mr-3" href="https://www.twitter.com/xyberpastoril">
+                                Twitter
+                            </a>
+                            
+                            <a href="https://www.github.com/xyberpastoril">
+                                GitHub
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
