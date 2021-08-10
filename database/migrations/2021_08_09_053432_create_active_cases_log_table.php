@@ -13,7 +13,7 @@ class CreateActiveCasesLogTable extends Migration {
 			$table->smallInteger('confirmed');
 			$table->smallInteger('probable');
 			$table->smallInteger('suspected');
-			$table->string('reference')->nullable();
+			$table->longText('reference')->nullable();
 		});
 	}
 
