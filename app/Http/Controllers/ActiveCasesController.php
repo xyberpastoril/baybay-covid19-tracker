@@ -45,10 +45,10 @@ class ActiveCasesController extends Controller
     public function store(Request $request)
     {
         if(\App\Models\ActiveCases::where('date_issued', '=', $request->date_issued)->count() != 0) {
-            throw \Illuminate\Validation\ValidationException::withMessages(['date_issued' => "Data for this date already exists. If you want to edit, proceed to its page."]);
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'date_issued' => "Data for this date already exists. If you want to edit, proceed to its page."
+            ]);
         }
-
-        // dd($request);
 
         \App\Models\ActiveCases::create([
             'date_issued' => $request->date_issued,
@@ -57,6 +57,8 @@ class ActiveCasesController extends Controller
             'suspected' => $request->suspected,
             'reference' => $request->reference,
         ]);
+
+        return redirect()->route('activecases.index');
     }
 
     /**
