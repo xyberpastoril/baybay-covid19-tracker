@@ -13,7 +13,15 @@ class ActiveCasesController extends Controller
      */
     public function index()
     {
-        
+        $data = \App\Models\ActiveCases::orderBy('date_issued', 'DESC')->paginate();
+
+        return view('activecases.index', [
+            'data' => $data,
+            'count' => $data->count(),
+            'currentPage' => $data->currentPage(),
+            'perPage' => $data->perPage(),
+            'totalCount' => \App\Models\ActiveCases::count(),
+        ]);
     }
 
     /**
