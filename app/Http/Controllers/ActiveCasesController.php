@@ -32,7 +32,7 @@ class ActiveCasesController extends Controller
     public function create()
     {
         return view('activecases.create', [
-            'today' => \Carbon\Carbon::now()->format('Y-m-d'),
+            'today' => \Carbon\Carbon::now()->subDays(1)->format('Y-m-d'),
         ]);
     }
 
