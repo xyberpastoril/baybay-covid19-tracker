@@ -53,6 +53,10 @@
                                 </li>
                             @endif --}}
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('activecases.index') }}">{{ __('Active Cases Log') }}</a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
