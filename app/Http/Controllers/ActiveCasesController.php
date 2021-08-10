@@ -68,9 +68,14 @@ class ActiveCasesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($date_issued)
     {
-        //
+        $entry = \App\Models\ActiveCases::where('date_issued', '=', $date_issued)->first();
+        if(!$entry) abort(404);
+
+        return view('activecases.edit', [
+            'entry' => $entry,
+        ]);
     }
 
     /**
@@ -80,9 +85,17 @@ class ActiveCasesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $date_issued)
     {
-        //
+        \App\Models\ActiveCases::where('date_issued', '=', $date_issued)->update([
+            'date_issued' => $request->date_issued,
+            'confirmed' => $request->confirmed,
+            'probable' => $request->probable,
+            'suspected' => $request->suspected,
+            'reference' => $request->reference,
+        ]);
+
+        return redirect()->route('activecases.index');
     }
 
     /**
