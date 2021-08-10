@@ -15,13 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('/activecases', App\Http\Controllers\ActiveCasesController::class);
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class, 'index']);
+Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
+Route::redirect('/home', '/');
+Route::resource('/activecases', App\Http\Controllers\ActiveCasesController::class);
