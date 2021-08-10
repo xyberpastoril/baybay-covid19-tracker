@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class, 'index']);
+Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
 Route::redirect('/home', '/');
+Route::resource('/activecases', App\Http\Controllers\ActiveCasesController::class);
